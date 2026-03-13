@@ -166,6 +166,7 @@ transform:scale(1.05);
 }
 
 .book-btn{
+  width: 100%;
 margin-top:20px;
 padding:10px 20px;
 background:#ff7a00;
@@ -252,54 +253,102 @@ padding-top:10px;
 
 /* hotels css */
 
-.hotels-container{
-padding:60px;
-text-align:center;
-background:#f5f7fb;
+.hotels-container {
+  padding: 40px;
+  background: #f5f5f5;
+  min-height: 100vh;
 }
 
-.hotels-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:30px;
-margin-top:40px;
+.title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
 }
 
-.hotel-card{
-background:white;
-border-radius:12px;
-padding:20px;
-box-shadow:0 6px 18px rgba(0,0,0,0.08);
-transition:0.3s;
+/* GRID LAYOUT */
+
+.hotel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
 }
 
-.hotel-card:hover{
-transform:translateY(-6px);
+/* HOTEL CARD */
+
+.hotel-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: 0.3s;
 }
 
-.hotel-card img{
-width:100%;
-height:200px;
-object-fit:cover;
-border-radius:10px;
+.hotel-card:hover {
+  transform: translateY(-8px);
 }
 
-.price{
-font-weight:bold;
-color:#ff7a00;
-margin:10px 0;
+/* IMAGE */
+
+.hotel-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
 }
 
-.hotel-card button{
-background:#ff7a00;
-border:none;
-padding:10px 18px;
-color:white;
-border-radius:6px;
-cursor:pointer;
+/* HOTEL INFO */
+
+.hotel-info {
+  padding: 15px;
 }
-.button-list{
-list-style: none;
+
+.hotel-info h3 {
+  margin-bottom: 5px;
+}
+
+.location {
+  color: gray;
+  font-size: 14px;
+}
+
+.address{
+  font-size: 13px;
+  color: #777;
+  margin-top: 4px;
+}
+
+/* PRICE + RATING */
+
+.hotel-details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.price {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.rating {
+  color: #f39c12;
+}
+
+/* BUTTON */
+
+.book-btn1{
+  width: 55%;
+  margin-top: 15px;
+  padding: 10px;
+  border: none;
+  background: #2c7be5;
+  color: white;
+  font-size: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.book-btn:hover {
+  background: #1a5fd1;
 }
 
 
@@ -369,3 +418,37 @@ list-style: none;
 .submit-btn:hover {
   background-color: #0056b3;
 }
+
+
+/* if search data not found  */
+
+.no-result{
+  text-align:center;
+  padding:60px;
+  width:100%;
+}
+
+.no-result h2{
+  font-size:28px;
+  margin-bottom:10px;
+}
+
+.no-result p{
+  color:gray;
+  margin-bottom:20px;
+}
+
+.search-again{
+  padding:10px 20px;
+  border:none;
+  background:#2c7be5;
+  color:white;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.search-again:hover{
+  background:#1a5fd1;
+}
+
+

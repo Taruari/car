@@ -1,26 +1,30 @@
 import "./index.css";
-import { BrowserRouter } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-export function Rooms() {
-const rooms = [
+export function Rooms(){
+
+const location = useLocation();
+const hotel = location.state?.hotel;
+
+const roomsData = {
+
+Goa:[
 {
 id:1,
-name:"Deluxe Room",
-price:2500,
+name:"Family Room",
+price:3500,
 images:[
-"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
 "https://images.unsplash.com/photo-1578683010236-d716f9a3f461",
-"https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
+"https://images.unsplash.com/photo-1566665797739-1674de7a421a"
 ]
 },
 {
 id:2,
-name:"Luxury Suite",
-price:4500,
+name:"Presidential Suite",
+price:9000,
 images:[
-"https://images.unsplash.com/photo-1560448075-bb485b067938",
-"https://images.unsplash.com/photo-1618773928121-c32242e63f39",
-"https://images.unsplash.com/photo-1591088398332-8a7791972843"
+"https://images.unsplash.com/photo-1540518614846-7eded433c457",
+"https://images.unsplash.com/photo-1560185007-cde436f6a4d0"
 ]
 },
 {
@@ -29,56 +33,116 @@ name:"Single Room",
 price:1500,
 images:[
 "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
-"https://images.unsplash.com/photo-1584132967334-10e028bd69f7",
-"https://images.unsplash.com/photo-1522708323590-d24dbb6b0267"
+"https://images.unsplash.com/photo-1584132967334-10e028bd69f7"
 ]
-},
+}
+],
+
+Chennai:[
 {
 id:4,
-name:"Family Room",
-price:3500,
+name:"Deluxe Room",
+price:2500,
 images:[
-"https://images.unsplash.com/photo-1578683010236-d716f9a3f461",
-"https://images.unsplash.com/photo-1566665797739-1674de7a421a",
-"https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf"
+"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
+"https://images.unsplash.com/photo-1578683010236-d716f9a3f461"
 ]
 },
 {
 id:5,
-name:"Presidential Suite",
-price:6500,
+name:"Luxury Suite",
+price:4500,
 images:[
-"https://images.unsplash.com/photo-1540518614846-7eded433c457",
-"https://images.unsplash.com/photo-1560185007-cde436f6a4d0",
-"https://images.unsplash.com/photo-1560185127-6ed189bf02f4"
+"https://images.unsplash.com/photo-1560448075-bb485b067938",
+"https://images.unsplash.com/photo-1618773928121-c32242e63f39"
+]
+}
+],
+
+Bangalore:[
+{
+id:6,
+name:"Premium Deluxe Room",
+price:4200,
+images:[
+"https://images.unsplash.com/photo-1600585152915-d208bec867a1",
+"https://images.unsplash.com/photo-1618220179428-22790b461013"
+]
+},
+{
+id:7,
+name:"Family Room",
+price:3700,
+images:[
+"https://images.unsplash.com/photo-1570129477492-45c003edd2be",
+"https://images.unsplash.com/photo-1617098900591-3f90928e8c54"
+]
+}
+],
+
+Mumbai:[
+{
+id:8,
+name:"Luxury Deluxe Room",
+price:4100,
+images:[
+"https://images.unsplash.com/photo-1592229505726-ca121723b8ef",
+"https://images.unsplash.com/photo-1600210492493-0946911123ea"
+]
+},
+{
+id:9,
+name:"Presidential Suite",
+price:10000,
+images:[
+"https://images.unsplash.com/photo-1617806118233-18e1de247200",
+"https://images.unsplash.com/photo-1618220179428-22790b461013"
 ]
 }
 ]
 
+};
+
+const rooms = hotel ? roomsData[hotel.location] || [] : [];
+
 return(
+
 <div className="rooms-container">
 
-<h1>Our Rooms</h1>
+{hotel && (
+<div className="selected-hotel">
+<h1>{hotel.name}</h1>
+<p>{hotel.location}</p>
+<p>{hotel.address}</p>
+</div>
+)}
 
-{rooms.map((room)=>(
+<h2>Available Rooms</h2>
+
+{rooms.map(room => (
+
 <div className="room-section" key={room.id}>
 
-<h2>{room.name}</h2>
+<h3>{room.name}</h3>
+
 <p className="room-price">₹ {room.price} / night</p>
 
 <div className="room-images">
 
-{room.images.map((img,index)=>(
-<img key={index} src={img} alt={room.name}/>
+{room.images.map((img,i)=>(
+<img key={i} src={img} alt={room.name}/>
 ))}
 
 </div>
 
-<button className="book-btn">Book Now</button>
+<button className="book-btn1">Book Now</button>
 
 </div>
+
 ))}
 
 </div>
+
 )
+
 }

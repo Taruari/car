@@ -13,6 +13,7 @@ import { RoomsSecond} from "./RoomsSecond";
 import { RoomsThird } from "./RoomsThird";
 import { RoomsFourth } from "./RoomsFourth";
 
+
 function App() {
   return (
     <div>
@@ -25,7 +26,7 @@ function App() {
         <Route path="/bookings" element={<MyBookings />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/contact" element={<Contact />} />
-         <Route path="/rooms/1" element={<Rooms/>} />
+          <Route path="/rooms" element={<Rooms />} />
         <Route path="/rooms/2" element={<RoomsSecond/>} />
         <Route path="/rooms/3" element={<RoomsThird/>} />
         <Route path="/rooms/4" element={<RoomsFourth/>} />

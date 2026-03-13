@@ -1,7 +1,28 @@
-import { Link } from "react-router-dom";
-
+import { Link , useNavigate} from "react-router-dom";
+import { useState } from "react";
 
 export function Home() {
+
+   const navigate = useNavigate();
+
+     const [searchData, setSearchData] = useState({
+    location: "",
+    checkin: "",
+    checkout: "",
+    guests: ""
+  });
+
+    function handleChange(e) {
+    setSearchData({
+      ...searchData,
+      [e.target.name]: e.target.value
+    });
+  }
+
+    function handleSearch() {
+    navigate("/hotels", { state: searchData });
+  }
+
   return (
       <>
     <header className="header">
@@ -10,7 +31,7 @@ export function Home() {
 
         <ul className="nav-links">
           <li><Link to="/">Home</Link></li>
-          <li><Link to="/hotels">Hotels</Link></li>
+          {/* <li><Link to="/hotels">Hotels</Link></li> */}
            <li><Link to="/rooms">Rooms</Link></li>
           <li><Link to="/bookings">Booking</Link></li>
           <li><Link to="/contact">Contact</Link></li>
@@ -25,14 +46,35 @@ export function Home() {
         <p>Search hotels, resorts and homestays at the best price</p>
 
         <div className="search-box">
-          <input type="text" placeholder="Where are you going?" />
-          <input type="date" />
-          <input type="date" />
-          <input type="number" placeholder="Guests" />
-          <button>Search</button>
+         
+            <input
+              type="text"
+              name="location"
+              placeholder="Where are you going?"
+              onChange={handleChange}
+            />
+          <input
+              type="date"
+              name="checkin"
+              onChange={handleChange}
+            />
+            <input
+              type="date"
+              name="checkout"
+              onChange={handleChange}
+            />
+           <input
+              type="number"
+              name="guests"
+              placeholder="Guests"
+              onChange={handleChange}
+            />
+      <button onClick={handleSearch}>Search</button>
         </div>
       </div>
     </header>
+
+{/* /////////////////////////////////////////////////////////////////// */}
      <footer className="footer">
         <div className="footer-container">
 
@@ -45,7 +87,7 @@ export function Home() {
   <h3>Quick Links</h3>
   <ul>
     <li><Link to="/">Home</Link></li>
-    <li><Link to="/hotels">Hotels</Link></li>
+    {/* <li><Link to="/hotels">Hotels</Link></li> */}
     <li><Link to="/rooms">Rooms</Link></li>
     <li><Link to="/bookings">Booking</Link></li>
     <li><Link to="/contact">Contact</Link></li>
