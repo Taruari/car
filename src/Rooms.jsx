@@ -1,11 +1,12 @@
 import "./index.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate} from "react-router-dom";
 
 export function Rooms(){
 
 const location = useLocation();
 const hotel = location.state?.hotel;
-
+const navigate = useNavigate();
+const searchData = location.state?.searchData;
 const roomsData = {
 
 Goa:[
@@ -135,7 +136,21 @@ return(
 
 </div>
 
-<button className="book-btn1">Book Now</button>
+<button
+  className="book-btn1"
+  onClick={() =>{
+     alert("✅ Booking Successful! Your room has been reserved.");
+    navigate("/bookings", {
+      state: {
+        hotel: hotel,
+        room: room,
+        searchData: searchData
+      }
+    })
+  }}
+>
+  Book Now
+</button>
 
 </div>
 
