@@ -501,6 +501,12 @@ margin-top:30px;
 text-align:center;
 }
 
+.booking-card {
+  margin-bottom: 20px;   
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
 .home-btn{
 background:#007bff;
 color:white;
@@ -514,4 +520,61 @@ transition:0.3s;
 
 .home-btn:hover{
 background:#0056b3;
+}
+
+.cancel-btn{
+background:#ff4d4d;
+color:white;
+border:none;
+padding:10px 15px;
+margin-top:10px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.cancel-btn:hover{
+background:#cc0000;
+}
+
+/* home room */
+
+.room-type{
+display:inline-block;
+margin:8px 0;
+padding:5px 10px;
+border-radius:5px;
+font-size:12px;
+font-weight:bold;
+color:white;
+}
+
+/* ⭐ Different colors for types */
+.basic .room-type{
+background:#6c757d;
+}
+
+.family .room-type{
+background:#007bff;
+}
+
+.luxury .room-type{
+background:#28a745;
+}
+
+/* Amenities */
+.amenities{
+margin:10px 0;
+}
+
+.amenities ul{
+padding-left:20px;
+}
+
+.amenities li{
+margin:4px 0;
+font-size:14px;
+}
+.amenities ul{
+list-style: none;   /* ⭐ removes dots */
+padding-left: 0;    /* ⭐ removes left spacing */
 }

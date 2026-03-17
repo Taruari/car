@@ -32,7 +32,7 @@ export function Home() {
         <ul className="nav-links">
           <li><Link to="/">Home</Link></li>
           {/* <li><Link to="/hotels">Hotels</Link></li> */}
-           <li><Link to="/rooms">Rooms</Link></li>
+           <li><Link to="/rooms/sample">Types Of Rooms</Link></li>
           <li><Link to="/bookings">Booking</Link></li>
           <li><Link to="/contact">Contact</Link></li>
         </ul>
@@ -88,7 +88,7 @@ export function Home() {
   <ul>
     <li><Link to="/">Home</Link></li>
     {/* <li><Link to="/hotels">Hotels</Link></li> */}
-    <li><Link to="/rooms">Rooms</Link></li>
+    <li><Link to="/rooms/sample">Rooms</Link></li>
     <li><Link to="/bookings">Booking</Link></li>
     <li><Link to="/contact">Contact</Link></li>
   </ul>

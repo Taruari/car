@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";   // ⭐ ADDED useState
+import { useEffect, useState } from "react";   
 
 export function Bookings(){
 
@@ -16,6 +16,20 @@ function formatDate(date){
 return new Date(date).toLocaleDateString("en-GB");
 }
 
+function cancelBooking(id){
+
+const updatedBookings = bookings.filter(b => b && b.id !== id);
+
+setBookings(updatedBookings);
+
+localStorage.setItem(
+"bookings",
+JSON.stringify(updatedBookings)
+);
+
+}
+
+
 /* ⭐ MODIFIED: useEffect to save booking and update list */
 useEffect(()=>{
 
@@ -31,7 +45,7 @@ searchData
 };
 
 /* ⭐ ADDED: merge old bookings + new booking */
-const updatedBookings = [...bookings,newBooking];
+const updatedBookings = [newBooking,...bookings];
 
 /* ⭐ ADDED: update state */
 setBookings(updatedBookings);
@@ -59,15 +73,23 @@ return(
 ) : (
 
 /* ⭐ MODIFIED: show all bookings from state */
-bookings.map(b=>(
+
+(bookings || [])
+.filter(b => b && b.id)  
+.map(b=>(
 <div className="booking-card" key={b.id}>
+
+<p><b>Booking ID:</b> {b.id}</p>
 
 <h2>{b.hotel?.name}</h2>
 
 <p><b>Location:</b> {b.hotel?.location}</p>
 
+<p><b>Address:</b> {b.hotel?.address}</p> 
+
 <p><b>Room:</b> {b.room?.name}</p>
 
+<p><b>Price:</b> ₹ {b.room?.price} / night</p>
 <img 
 src={b.room?.images[0]} 
 alt={b.room?.name}
@@ -79,6 +101,13 @@ width="200"
 <p><b>Check-out:</b> {formatDate(b.searchData?.checkout)}</p>
 
 <p><b>Guests:</b> {b.searchData?.guests}</p>
+
+<button
+className="cancel-btn"
+onClick={()=>cancelBooking(b.id)}
+>
+Cancel Booking
+</button>
 
 </div>
 ))
