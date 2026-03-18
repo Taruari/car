@@ -16,11 +16,22 @@ fetch(`https://6971d21632c6bacb12c49d4a.mockapi.io/todos`,{
       method: "GET",
   })
  .then((res) => res.json())
- .then((data) => setRooms(data));
+ .then((data) => {
+  if (hotel){
+    const filteredRooms = data.filter (
+      (room) =>
+        room.city.toLowerCase () === hotel.location.toLowerCase()
+    );
+    setRooms(filteredRooms);
+   } else {
+    setRooms(data);
+   }
+ });
 };
-useEffect(() => {
-    getRooms();
-  });
+useEffect(()=>{
+  getRooms();
+},);
+
 //         if (hotel) {
 //           // ⭐ filter by city
 //           const filtered = data.filter(
