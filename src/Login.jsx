@@ -1,90 +1,124 @@
 import "./index.css";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { API } from "./global";
+export function Login() {
 
- export function Login () {
-const [form,setForm] = useState({
-email:"",
-password:""
-})
+  const [form, setForm] = useState({
+    email: "",
+    password: ""
+  });
 
-const [errors,setErrors] = useState({})
+  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
+  // ✅ HANDLE INPUT CHANGE
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-const handleChange = (e)=>{
-const {name,value} = e.target
+    setForm({ ...form, [name]: value });
+    validate(name, value);
+  };
 
-setForm({...form,[name]:value})
+  // ✅ VALIDATION
+  const validate = (name, value) => {
+    let newErrors = { ...errors };
 
-validate(name,value)
-}
+    if (name === "email") {
+      if (!value.includes("@")) {
+        newErrors.email = "Enter a valid email";
+      } else {
+        delete newErrors.email;
+      }
+    }
 
-const validate = (name,value)=>{
+    if (name === "password") {
+      if (value.length < 6) {
+        newErrors.password = "Password must be at least 6 characters";
+      } else {
+        delete newErrors.password;
+      }
+    }
 
-let newErrors = {...errors}
+    setErrors(newErrors);
+  };
 
-if(name === "email"){
-if(!value.includes("@")){
-newErrors.email = "Enter a valid email"
-}else{
-delete newErrors.email
-}
-}
+  // ✅ SUBMIT (CONNECTED TO BACKEND)
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-if(name === "password"){
-if(value.length < 6){
-newErrors.password = "Password must be at least 6 characters"
-}else{
-delete newErrors.password
-}
-}
+    // ❌ if validation errors
+    if (Object.keys(errors).length !== 0) {
+      alert("Please fix errors ❌");
+      return;
+    }
 
-setErrors(newErrors)
-}
+    // ✅ CALL BACKEND API
+    fetch(`${API}/users/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: form.email,
+        password: form.password
+      })
+    })
+      .then((res) => res.json())
+      .then((data) => {
 
-const handleSubmit = (e)=>{
-e.preventDefault()
+        if (data.message === "Login successful") {
+          alert("Login Successful ✅");
 
-if(Object.keys(errors).length === 0){
-alert("Login Successful ✅")
-}else{
-alert("Please fix errors ❌")
-}
-}
+          // ✅ SAVE USER
+          localStorage.setItem("user", JSON.stringify(data.user));
 
-return(
+          console.log("User:", data.user);
 
-<div className="login-container">
+        navigate("/"); 
 
-<form className="login-form" onSubmit={handleSubmit}>
+        } else {
+          alert(data.message);
+        }
 
-<h2>Login</h2>
+      })
+      .catch((err) => {
+        console.error(err);
+        alert("Server error ❌");
+      });
+  };
 
-<input
-type="text"
-name="email"
-placeholder="Enter Email"
-value={form.email}
-onChange={handleChange}
-/>
+  return (
+    <div className="login-container">
 
-{errors.email && <p className="error">{errors.email}</p>}
+      <form className="login-form" onSubmit={handleSubmit}>
 
-<input
-type="password"
-name="password"
-placeholder="Enter Password"
-value={form.password}
-onChange={handleChange}
-/>
+        <h2>Login</h2>
 
-{errors.password && <p className="error">{errors.password}</p>}
+        <input
+          type="text"
+          name="email"
+          placeholder="Enter Email"
+          value={form.email}
+          onChange={handleChange}
+        />
 
-<button type="submit">Login</button>
+        {errors.email && <p className="error">{errors.email}</p>}
 
-</form>
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter Password"
+          value={form.password}
+          onChange={handleChange}
+        />
 
-</div>
+        {errors.password && <p className="error">{errors.password}</p>}
 
-)
+        <button type="submit">Login</button>
 
+      </form>
+
+    </div>
+  );
 }
 

@@ -12,7 +12,7 @@ export function Rooms() {
   const [rooms, setRooms] = useState([]);
 
   const getRooms = ()=>{
-fetch(`${API}`,{
+fetch(`${API}/hotels`,{
       method: "GET",
   })
  .then((res) => res.json())
