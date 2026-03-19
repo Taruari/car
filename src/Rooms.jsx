@@ -1,7 +1,7 @@
 import "./index.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import { API } from "./global";
 export function Rooms() {
   const location = useLocation();
   const hotel = location.state?.hotel;
@@ -12,7 +12,7 @@ export function Rooms() {
   const [rooms, setRooms] = useState([]);
 
   const getRooms = ()=>{
-fetch(`https://6971d21632c6bacb12c49d4a.mockapi.io/todos`,{
+fetch(`${API}`,{
       method: "GET",
   })
  .then((res) => res.json())
