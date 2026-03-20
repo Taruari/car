@@ -1,9 +1,20 @@
 import { Link , useNavigate} from "react-router-dom";
 import { useState } from "react";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 export function Home() {
 
    const navigate = useNavigate();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn"));
+
+
+   function handleLogout() {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("user");
+    setIsLoggedIn(false);
+    navigate("/login");
+  }
 
      const [searchData, setSearchData] = useState({
     location: "",
@@ -36,9 +47,15 @@ export function Home() {
           <li><Link to="/bookings">Booking</Link></li>
           <li><Link to="/contact">Contact</Link></li>
         </ul>
+             {isLoggedIn ? (
+            <button className="login-btn" onClick={handleLogout}>
+              Logout
+            </button>
+          ) : (
             <Link to="/login">
-          <button className="login-btn">Login</button>
-        </Link>
+              <button className="login-btn">Login</button>
+            </Link>
+          )}
       </nav>
 
       <div className="hero">

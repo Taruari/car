@@ -48,7 +48,7 @@ export function Login() {
 
     // ❌ if validation errors
     if (Object.keys(errors).length !== 0) {
-      alert("Please fix errors ❌");
+      alert("Invalid credentials. Please try again.");
       return;
     }
 
@@ -71,13 +71,14 @@ export function Login() {
 
           // ✅ SAVE USER
           localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem("isLoggedIn", "true");
 
           console.log("User:", data.user);
 
         navigate("/"); 
 
         } else {
-          alert(data.message);
+           alert("Invalid email or password. Please try again.");
         }
 
       })

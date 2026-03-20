@@ -12,7 +12,7 @@ import { Rooms} from "./Rooms";
 import { RoomsSecond} from "./RoomsSecond";
 import { RoomsThird } from "./RoomsThird";
 import { RoomsFourth } from "./RoomsFourth";
-
+import { ProtectedRoute } from "./ProtectedRoute";
 
 function App() {
   return (
@@ -21,12 +21,12 @@ function App() {
         <Route path="/" element={<Home />} />
     
         <Route path="/about" element={<About />} />
-        <Route path="/hotels" element={<Hotels />} />
+        <Route path="/hotels" element={<ProtectedRoute><Hotels /></ProtectedRoute>} />
         <Route path="/login" element={<Login />} />
-        <Route path="/bookings" element={<Bookings />} />
+        <Route path="/bookings" element={ <ProtectedRoute><Bookings /></ProtectedRoute>} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/contact" element={<Contact />} />
-          <Route path="/rooms" element={<Rooms />} />
+        <Route path="/contact" element={<ProtectedRoute><Contact /></ProtectedRoute>} />
+        <Route path="/rooms" element={<Rooms />} />
         <Route path="/rooms/sample" element={<RoomsSecond/>} />
         <Route path="/rooms/3" element={<RoomsThird/>} />
         <Route path="/rooms/4" element={<RoomsFourth/>} />

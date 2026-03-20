@@ -67,7 +67,7 @@ const hotels = [
             <p className="location">{hotel.location}</p>
             <p className="address">{hotel.address}</p>
              <div className="hotel-details">
-             <span className="price">₹{hotel.price}/night</span>
+             {/* <span className="price">₹{hotel.price}/night</span> */}
               <span className="rating">⭐ {hotel.rating}</span>
                    </div>
                 <Link to="/rooms" state={{ hotel: hotel, searchData: searchData }}>
