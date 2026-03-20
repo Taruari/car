@@ -58,7 +58,7 @@ useEffect(()=>{
         <div className="room-section" key={room.id}>
           <h3>{room.name}</h3>
 
-          <p className="room-price">₹ {room.price} / night</p>
+          <p className="room-price">₹ {room.price} /Day</p>
 
           {/* ⭐ UPDATED IMAGES */}
           <div className="room-images">
