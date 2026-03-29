@@ -48,7 +48,7 @@ searchData
 const updatedBookings = [newBooking,...bookings];
 
 /* ⭐ ADDED: update state */
-setBookings(updatedBookings);
+(updatedBookings);
 
 /* ⭐ ADDED: save to localStorage */
 localStorage.setItem(
@@ -89,7 +89,7 @@ return(
 
 <p><b>Room:</b> {b.room?.name}</p>
 
-<p><b>Price:</b> ₹ {b.room?.price} / night</p>
+<p><b>Price:</b> ₹ {b.room?.price} / Day</p>
 <img 
 src={b.room?.images[0]} 
 alt={b.room?.name}

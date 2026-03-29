@@ -57,7 +57,7 @@ return(
 {/* ⭐ Room Type Badge */}
 <span className="room-type">{room.type}</span>
 
-<p className="room-price">₹ {room.price} / night</p>
+<p className="room-price">₹ {room.price} / Day</p>
 
 {/* ⭐ Amenities */}
 <div className="amenities">

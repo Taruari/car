@@ -63,7 +63,7 @@ return(
 <div className="room-section" key={room.id}>
 
 <h2>{room.name}</h2>
-<p className="room-price">₹ {room.price} / night</p>
+<p className="room-price">₹ {room.price} / Day</p>
 
 <div className="room-images">
 {room.images.map((img,i)=>(
